@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions, no-unused-vars */
+/* eslint-disable no-unused-expressions, no-unused-vars, no-empty-function */
 
 x => {};
 

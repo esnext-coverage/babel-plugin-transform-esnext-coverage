@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
 
 // one statement
 let a = 0; // one expression
