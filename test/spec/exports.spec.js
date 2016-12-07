@@ -47,3 +47,29 @@ test('coverage should count export function declarations', t => {
     t.equal(executedNeverFunctionLocations.length, 1);
   });
 });
+
+test('coverage should count export extensions as "export"', t => {
+  t.plan(2);
+  runFixture('export-extensions-statements').then(({locations}) => {
+    const exportLocations = locations.filter(isExport);
+
+    // There is only one location per export statement, because
+    // export extensions contents are not instrumentable:
+    t.equal(exportLocations.length, 2);
+    // All export locations should only be executed once:
+    t.ok(exportLocations.every(el => el.count === 1));
+  });
+});
+
+test('coverage should count export extensions as "statement"', t => {
+  t.plan(2);
+  runFixture('export-extensions-statements').then(({locations}) => {
+    const statementLocations = locations.filter(isStatement);
+
+    // There is only one location per export statement, because
+    // export extensions contents are not instrumentable:
+    t.equal(statementLocations.length, 2);
+    // All export statement locations should only be executed once:
+    t.ok(statementLocations.every(el => el.count === 1));
+  });
+});
