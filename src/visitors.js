@@ -72,6 +72,17 @@ export default safeguardVisitors({
   // Source: export {};
   // Instrumented: ++count; export {};
   ExportDeclaration(path, state) {
+    // Specifiers are not instrumentable:
+    if (path.has('specifiers')) {
+      path.get('specifiers').forEach(specifier => {
+        markAsInstrumented(specifier.get('local'));
+        markAsInstrumented(specifier.get('exported'));
+      });
+    }
+    // Source is not instrumentable:
+    if (path.has('source')) {
+      markAsInstrumented(path.get('source'));
+    }
     instrumentStatement(path, state, ['export', 'statement']);
   },
 
