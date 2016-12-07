@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars, no-new */
+/* eslint-disable no-unused-vars, no-new, no-useless-constructor, class-methods-use-this */
 
 // one statement
 class A {

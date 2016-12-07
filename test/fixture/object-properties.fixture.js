@@ -1,4 +1,4 @@
-/* eslint-disable no-undef, no-unused-vars, quote-props */
+/* eslint-disable no-undef, no-unused-vars, quote-props, no-useless-computed-key */
 
 const a = 'a'; // <- one expression not related to this test, but unavoidable, see below
 const foo = { // <- one expression not related to this test, but unavoidable
