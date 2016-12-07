@@ -9,7 +9,7 @@ Instrumenter for [esnext-coverage](https://github.com/esnext-coverage/esnext-cov
 ## Installation
 
 ```sh
-npm install babel-plugin-transform-esnext-coverage
+npm install babel-plugin-transform-esnext-coverage --save-dev
 ```
 
 ## Usage
