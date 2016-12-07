@@ -14,17 +14,11 @@ npm install babel-plugin-transform-esnext-coverage
 
 ## Usage
 
-### Via `.babelrc`
+### `.babelrc`
 
-```js
-{
-  "plugins": ["transform-esnext-coverage"]
-}
-```
+It is recommended that you run the instrumenter conditionally, using `env` variables, e.g. `NODE_ENV=test`:
 
-If you need to run the instrumenter conditionally, use `env` variables, e.g. `NODE_ENV=test`:
-
-```js
+```json
 {
   "env": {
     "test": {
@@ -34,15 +28,15 @@ If you need to run the instrumenter conditionally, use `env` variables, e.g. `NO
 }
 ```
 
-### Via CLI
+### CLI
 
 ```sh
 $ babel --plugins transform-esnext-coverage script.js
 ```
 
-### Via Node API
+### Node API
 
-```javascript
+```js
 require('babel-core').transform('code', {
   plugins: ['transform-esnext-coverage']
 });
