@@ -3,7 +3,7 @@
 [![NPM version](http://img.shields.io/npm/v/babel-plugin-transform-esnext-coverage.svg)](https://www.npmjs.org/package/babel-plugin-transform-esnext-coverage)
 [![Build Status](https://travis-ci.org/esnext-coverage/babel-plugin-transform-esnext-coverage.svg?branch=master)](https://travis-ci.org/esnext-coverage/babel-plugin-transform-esnext-coverage)
 
-Instrumenter for [esnext-coverage](esnext-coverage).
+Instrumenter for [esnext-coverage](https://github.com/esnext-coverage/esnext-coverage).
 
 
 ## Installation
@@ -51,5 +51,3 @@ require('babel-core').transform('code', {
 ## License
 
 [MIT License](http://opensource.org/licenses/MIT)
-
-[esnext-coverage]: https://github.com/esnext-coverage/esnext-coverage
