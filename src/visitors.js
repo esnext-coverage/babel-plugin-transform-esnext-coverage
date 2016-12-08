@@ -32,7 +32,7 @@ export default safeguardVisitors({
   Directive(path, state) {
     const loc = path.node.loc;
     const marker = createMarker(state, {loc, tags: ['statement', 'directive']});
-    path.insertAfter(markAsInstrumented(
+    path.parentPath.unshiftContainer('body', markAsInstrumented(
       t.expressionStatement(marker)
     ));
   },
