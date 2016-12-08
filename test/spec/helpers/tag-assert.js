@@ -1,3 +1,7 @@
+export function isDirective({tags}) {
+  return tags.some(tag => tag === 'directive');
+}
+
 export function isFunction({tags}) {
   return tags.some(tag => tag === 'function');
 }
