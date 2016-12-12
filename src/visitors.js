@@ -6,6 +6,7 @@ import {
   instrumentExpression,
   instrumentObjectProperty,
   instrumentClassProperty,
+  instrumentConditionBranch,
   isInstrumentableStatement
 } from './instrumenters';
 
@@ -111,24 +112,22 @@ export default safeguardVisitors({
   // Source: if (true) {}
   // Instrumented: ++count; if (++count, true) { ++count; } else { ++count; }
   IfStatement(path, state) {
-    // There is always a "consequent" branch:
-    instrumentBlock('body', path.get('consequent'), state, ['branch']);
-
-    // An "alternate" branch may exist:
-    const alternate = path.get('alternate');
-    if (alternate.isBlockStatement()) {
-      instrumentBlock('body', path.get('alternate'), state, ['branch']);
-    } else if (!alternate.isIfStatement()) {
-      const body = t.blockStatement([]);
-      const locEnd = path.node.loc.end;
-      body.loc = {start: locEnd, end: locEnd};
-      alternate.replaceWith(body);
-      instrumentBlock('body', alternate, state, ['branch']);
-    }
-
     // We want to instrument entire if-statements as statements:
     if (path.key !== 'alternate') {
       instrumentStatement(path, state);
+    }
+
+    // Consequent branch:
+    instrumentConditionBranch(path.get('consequent'), state, ['branch']);
+
+    // Alternate branch:
+    if (!path.has('alternate')) {
+      const placeholder = t.emptyStatement();
+      placeholder.loc = {start: path.node.loc.end, end: path.node.loc.end};
+      path.get('alternate').replaceWith(placeholder);
+      instrumentConditionBranch(path.get('alternate'), state, ['branch']);
+    } else if (!path.get('alternate').isIfStatement()) {
+      instrumentConditionBranch(path.get('alternate'), state, ['branch']);
     }
   },
 
