@@ -34,6 +34,42 @@ test('coverage should count if-statement branches', t => {
   });
 });
 
+test('coverage should count empty branches in if-statements', t => {
+  t.plan(3);
+  runFixture('if-statements-empty').then(({locations}) => {
+    const branchLocations = locations.filter(isBranch);
+    const executedOnceBranchLocations = branchLocations
+      .filter(l => l.count === 1);
+    const executedNeverBranchLocations = branchLocations
+      .filter(l => l.count === 0);
+
+    // There are three branches (all implicit):
+    t.equal(branchLocations.length, 3);
+    // Only one of the three branches has actually run:
+    t.equal(executedOnceBranchLocations.length, 1);
+    // Other two branches have never run:
+    t.equal(executedNeverBranchLocations.length, 2);
+  });
+});
+
+test('coverage should count blockless branches in if-statements', t => {
+  t.plan(3);
+  runFixture('if-statements-no-block').then(({locations}) => {
+    const branchLocations = locations.filter(isBranch);
+    const executedOnceBranchLocations = branchLocations
+      .filter(l => l.count === 1);
+    const executedNeverBranchLocations = branchLocations
+      .filter(l => l.count === 0);
+
+    // There are three branches (all implicit):
+    t.equal(branchLocations.length, 3);
+    // Only one of the three branches has actually run:
+    t.equal(executedOnceBranchLocations.length, 1);
+    // Other two branches have never run:
+    t.equal(executedNeverBranchLocations.length, 2);
+  });
+});
+
 test('coverage should count missing alternate branches in if-statements', t => {
   t.plan(2);
   runFixture('if-statements-no-alternate').then(({locations}) => {

@@ -51,3 +51,26 @@ export function instrumentClassProperty(path, state, tags = ['statement', 'prope
   const marker = createMarker(state, {loc, tags}, node);
   value.replaceWith(marker);
 }
+
+export function instrumentConditionBranch(path, state, tags = ['branch']) {
+  if (path.isBlockStatement()) {
+    // before: if (true) {};
+    // after: if (true) { instrument(0); };
+    instrumentBlock('body', path, state, tags);
+  } else if (path.isEmptyStatement()) {
+    // before: if (true);
+    // after: if (true) instrument(0);
+    const marker = createMarker(state, {loc: path.node.loc, tags});
+    path.replaceWith(markAsInstrumented(
+      t.expressionStatement(marker)
+    ));
+  } else {
+    // before: if (true) true;
+    // after: if (true) { instrument(0); true; }
+    const branchBody = t.blockStatement([path.node]);
+    const locEnd = path.node.loc.end;
+    branchBody.loc = {start: locEnd, end: locEnd};
+    path.replaceWith(markAsInstrumented(branchBody));
+    instrumentBlock('body', path, state, tags);
+  }
+}
