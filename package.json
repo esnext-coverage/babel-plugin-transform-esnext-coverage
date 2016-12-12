@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-esnext-coverage",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Instrumenter for esnext-coverage",
   "main": "dist/plugin.js",
   "scripts": {
