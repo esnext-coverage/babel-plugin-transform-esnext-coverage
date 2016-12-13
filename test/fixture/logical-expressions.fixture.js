@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 // one statement, one expression
 ( // one expression, one branch
   true || // one expression, one branch

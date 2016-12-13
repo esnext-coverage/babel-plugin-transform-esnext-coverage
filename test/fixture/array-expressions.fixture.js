@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-
 // one statement
 [ // one expression
   [ // one expressions
