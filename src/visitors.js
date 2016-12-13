@@ -163,7 +163,7 @@ export default safeguardVisitors({
   // Source: while (cond) {}
   // instrumented: ++count; while (cond) { ++count }
   WhileStatement(path, state) {
-    instrumentBlock('body', path.get('body'), state, ['branch']);
+    instrumentConditionBranch(path.get('body'), state, ['branch']);
     instrumentStatement(path, state);
   },
 
