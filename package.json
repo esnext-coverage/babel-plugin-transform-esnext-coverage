@@ -4,7 +4,7 @@
   "description": "Instrumenter for esnext-coverage",
   "main": "dist/plugin.js",
   "scripts": {
-    "lint": "eslint {src,test}/**/*.js",
+    "lint": "eslint {src,test/spec}/**/*.js",
     "spec": "tape -r esnext-coverage test/spec/*.spec.js",
     "test": "npm run lint && npm run spec",
     "transpile": "babel src --out-dir dist",

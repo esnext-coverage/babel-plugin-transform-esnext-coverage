@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars, no-var, one-var, prefer-const */
 const a = 'a';
 const b = 'b',
   c = 'c';

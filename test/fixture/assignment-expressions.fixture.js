@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 // one statement
 let a = 0; // one expression
 // one statement

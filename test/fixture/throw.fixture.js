@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 function letsThrow() { throw new Error('e'); }
 
 try {

@@ -1,5 +1,3 @@
-/* eslint-disable no-empty-function */
-
 // one export statement
 export const a = 'a'; // one expression
 

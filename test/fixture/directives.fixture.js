@@ -1,5 +1,3 @@
-/* eslint-disable strict, no-unused-vars */
-
 'use strict';
 'foobar';
 
