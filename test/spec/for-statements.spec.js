@@ -39,6 +39,19 @@ test('coverage should count for-statement test expressions', t => {
   });
 });
 
+test('coverage should count conditionless for-statements', t => {
+  t.plan(2);
+  runFixture('for-statements-no-condition').then(({locations}) => {
+    const expressionLocations = locations.filter(isExpression);
+    const statementLocations = locations.filter(isStatement);
+
+    // There are two statements:
+    t.equal(statementLocations.length, 2);
+    // There are at 0 expressions:
+    t.equal(expressionLocations.length, 0);
+  });
+});
+
 test.skip('coverage should count for-statement branches', t => {
   t.plan(2);
   runFixture('for-statements').then(({locations}) => {
