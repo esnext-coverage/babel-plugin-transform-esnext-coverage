@@ -8,7 +8,7 @@ import {isExpression, isBranch} from './helpers/tag-assert';
 
 test('coverage should count switch-case test expressions', t => {
   t.plan(2);
-  runFixture('switch-cases').then(({locations}) => {
+  runFixture('switch-cases').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedTestExpressions = expressionLocations
       .filter(el => el.count === 1)
@@ -23,7 +23,7 @@ test('coverage should count switch-case test expressions', t => {
 
 test('coverage should count switch-case blocks as branches', t => {
   t.plan(2);
-  runFixture('switch-cases').then(({locations}) => {
+  runFixture('switch-cases').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedBranchLocations = branchLocations
       .filter(el => el.count === 1)

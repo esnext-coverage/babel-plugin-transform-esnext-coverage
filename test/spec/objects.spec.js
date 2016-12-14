@@ -8,7 +8,7 @@ import {isExpression, isFunction} from './helpers/tag-assert';
 
 test('coverage should count object properties', t => {
   t.plan(2);
-  runFixture('object-properties').then(({locations}) => {
+  runFixture('object-properties').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations
       .filter(l => l.count === 1);
@@ -22,7 +22,7 @@ test('coverage should count object properties', t => {
 
 test('coverage should count object methods', t => {
   t.plan(3);
-  runFixture('object-methods').then(({locations}) => {
+  runFixture('object-methods').then(locations => {
     const functionLocations = locations.filter(isFunction);
     const executedOnceFunctionLocations = functionLocations
       .filter(l => l.count === 1);
@@ -40,7 +40,7 @@ test('coverage should count object methods', t => {
 
 test('coverage should count expressions in object method declarations', t => {
   t.plan(2);
-  runFixture('object-methods').then(({locations}) => {
+  runFixture('object-methods').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations
       .filter(l => l.count === 1);

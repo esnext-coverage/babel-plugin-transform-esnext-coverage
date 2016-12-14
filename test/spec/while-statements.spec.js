@@ -8,7 +8,7 @@ import {isExpression, isStatement, isBranch} from './helpers/tag-assert';
 
 test('coverage should count while-statement statements', t => {
   t.plan(2);
-  runFixture('while-statements').then(({locations}) => {
+  runFixture('while-statements').then(locations => {
     const statementLocations = locations.filter(isStatement);
     const executedStatementLocations = statementLocations
       .filter(el => el.count === 1)
@@ -23,7 +23,7 @@ test('coverage should count while-statement statements', t => {
 
 test('coverage should count while-statement test expressions', t => {
   t.plan(2);
-  runFixture('while-statements').then(({locations}) => {
+  runFixture('while-statements').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations
       .filter(el => el.count === 1)
@@ -38,7 +38,7 @@ test('coverage should count while-statement test expressions', t => {
 
 test('coverage should count while-statement branches', t => {
   t.plan(2);
-  runFixture('while-statements').then(({locations}) => {
+  runFixture('while-statements').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedOnceBranchLocations = branchLocations
       .filter(el => el.count === 1)
@@ -53,7 +53,7 @@ test('coverage should count while-statement branches', t => {
 
 test('coverage should count empty while-statement branches', t => {
   t.plan(3);
-  runFixture('while-statements-empty').then(({locations}) => {
+  runFixture('while-statements-empty').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedNeverBranchLocations = branchLocations
       .filter(el => el.count === 0);
@@ -71,7 +71,7 @@ test('coverage should count empty while-statement branches', t => {
 
 test('coverage should count while-statement branches without blocks', t => {
   t.plan(3);
-  runFixture('while-statements-no-block').then(({locations}) => {
+  runFixture('while-statements-no-block').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedNeverBranchLocations = branchLocations
       .filter(el => el.count === 0);

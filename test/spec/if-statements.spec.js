@@ -8,7 +8,7 @@ import {isExpression, isBranch} from './helpers/tag-assert';
 
 test('coverage should count if-statement test expressions', t => {
   t.plan(2);
-  runFixture('if-statements').then(({locations}) => {
+  runFixture('if-statements').then(locations => {
     const testExpressions = locations.filter(isExpression);
     const executedOnceTestExpressions = testExpressions
       .filter(l => l.count === 1);
@@ -22,7 +22,7 @@ test('coverage should count if-statement test expressions', t => {
 
 test('coverage should count if-statement branches', t => {
   t.plan(2);
-  runFixture('if-statements').then(({locations}) => {
+  runFixture('if-statements').then(locations => {
     const testBranches = locations.filter(isBranch);
     const executedOnceTestBranches = testBranches
       .filter(l => l.count === 1);
@@ -36,7 +36,7 @@ test('coverage should count if-statement branches', t => {
 
 test('coverage should count empty branches in if-statements', t => {
   t.plan(3);
-  runFixture('if-statements-empty').then(({locations}) => {
+  runFixture('if-statements-empty').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedOnceBranchLocations = branchLocations
       .filter(l => l.count === 1);
@@ -54,7 +54,7 @@ test('coverage should count empty branches in if-statements', t => {
 
 test('coverage should count blockless branches in if-statements', t => {
   t.plan(3);
-  runFixture('if-statements-no-block').then(({locations}) => {
+  runFixture('if-statements-no-block').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedOnceBranchLocations = branchLocations
       .filter(l => l.count === 1);
@@ -72,7 +72,7 @@ test('coverage should count blockless branches in if-statements', t => {
 
 test('coverage should count missing alternate branches in if-statements', t => {
   t.plan(2);
-  runFixture('if-statements-no-alternate').then(({locations}) => {
+  runFixture('if-statements-no-alternate').then(locations => {
     const testBranches = locations.filter(isBranch);
     const executedOnceTestBranches = testBranches
       .filter(l => l.count === 1);

@@ -169,7 +169,7 @@ export default safeguardVisitors({
 
   Function(path, state) {
     if (path.node.kind === 'constructor') {
-      instrumentBlock('body', path.get('body'), state, ['function', '_constructor']);
+      instrumentBlock('body', path.get('body'), state, ['function', 'constructor']);
     } else {
       instrumentBlock('body', path.get('body'), state, ['function']);
     }

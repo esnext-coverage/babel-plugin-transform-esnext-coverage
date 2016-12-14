@@ -8,7 +8,7 @@ import {isStatement, isExpression} from './helpers/tag-assert';
 
 test('coverage should count array expressions', t => {
   t.plan(3);
-  runFixture('array-expressions').then(({locations}) => {
+  runFixture('array-expressions').then(locations => {
     const statementLocations = locations.filter(isStatement);
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations

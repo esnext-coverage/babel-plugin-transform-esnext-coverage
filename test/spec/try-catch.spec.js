@@ -8,7 +8,7 @@ import {isStatement, isBranch} from './helpers/tag-assert';
 
 test('coverage should count try and throw statements', t => {
   t.plan(2);
-  runFixture('try-catch').then(({locations}) => {
+  runFixture('try-catch').then(locations => {
     const statementLocations = locations.filter(isStatement);
     const executedOnceStatementLocations = statementLocations
       .filter(el => el.count === 1);
@@ -26,7 +26,7 @@ test('coverage should count try and throw statements', t => {
 
 test('coverage should count try-catch branches', t => {
   t.plan(2);
-  runFixture('try-catch').then(({locations}) => {
+  runFixture('try-catch').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedOnceBranchLocations = branchLocations
       .filter(el => el.count === 1);

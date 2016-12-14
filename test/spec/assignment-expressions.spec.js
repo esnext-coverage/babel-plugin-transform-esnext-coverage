@@ -8,7 +8,7 @@ import {isExpression} from './helpers/tag-assert';
 
 test('coverage should count assignment expressions', t => {
   t.plan(2);
-  runFixture('assignment-expressions').then(({locations}) => {
+  runFixture('assignment-expressions').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations
       .filter(el => el.count === 1);

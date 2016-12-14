@@ -1,4 +1,5 @@
 import {types} from 'babel-core';
+import {codec} from 'esnext-coverage-analytics';
 import {getCoverageMeta} from './meta';
 
 /**
@@ -31,12 +32,11 @@ export function isInstrumented(pathOrNode) {
  */
 export function createMarker(state, {loc, tags}, node) {
   const {locations, variable} = getCoverageMeta(state);
-  const id = locations.length;
-  const args = [types.numericLiteral(id)];
+  const args = [types.numericLiteral(locations.length)];
   if (node) {
     args.push(node);
   }
   const marker = types.callExpression(variable, args);
-  locations.push({id, loc, tags, count: 0});
+  locations.push(codec.encode({loc, tags, count: 0}));
   return markAsInstrumented(marker);
 }

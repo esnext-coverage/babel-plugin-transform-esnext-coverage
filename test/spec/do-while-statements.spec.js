@@ -8,7 +8,7 @@ import {isExpression, isStatement, isBranch} from './helpers/tag-assert';
 
 test('coverage should count do-while statements', t => {
   t.plan(2);
-  runFixture('do-while-statements').then(({locations}) => {
+  runFixture('do-while-statements').then(locations => {
     const statementLocations = locations.filter(isStatement);
     const executedStatementLocations = statementLocations
       .filter(el => el.count === 1);
@@ -22,7 +22,7 @@ test('coverage should count do-while statements', t => {
 
 test('coverage should count do-while test expressions', t => {
   t.plan(2);
-  runFixture('do-while-statements').then(({locations}) => {
+  runFixture('do-while-statements').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations
       .filter(el => el.count === 1);
@@ -36,7 +36,7 @@ test('coverage should count do-while test expressions', t => {
 
 test('coverage should count do-while branches', t => {
   t.plan(2);
-  runFixture('do-while-statements').then(({locations}) => {
+  runFixture('do-while-statements').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedOnceBranchLocations = branchLocations
       .filter(el => el.count === 1);

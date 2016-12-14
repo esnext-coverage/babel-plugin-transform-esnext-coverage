@@ -1,14 +1,12 @@
 /* eslint-disable no-undef, no-unused-vars */
 
-const VARIABLE = (context => {
+const VARIABLE = (function (context) {
   const locations = JSON.parse(LOCATIONS);
   context[NAMESPACE] = context[NAMESPACE] || {};
-  context[NAMESPACE][FILEPATH] = {
-    path: FILEPATH,
-    locations
-  };
-  return (index, value) => {
-    locations[index].count += 1;
+  context[NAMESPACE].files = context[NAMESPACE].files || {};
+  context[NAMESPACE].files[FILEPATH] = {coverage: locations};
+  return function (index, value) {
+    locations[index][0] += 1;
     return value;
   };
 })(

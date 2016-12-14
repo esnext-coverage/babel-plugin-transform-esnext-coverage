@@ -8,7 +8,7 @@ import {isFunction, isStatement} from './helpers/tag-assert';
 
 test('coverage should count function declarations', t => {
   t.plan(3);
-  runFixture('function-declarations').then(({locations}) => {
+  runFixture('function-declarations').then(locations => {
     const statementLocations = locations.filter(isStatement);
     t.equal(statementLocations.length, 2);
     t.equal(statementLocations[0].count, 1);
@@ -18,7 +18,7 @@ test('coverage should count function declarations', t => {
 
 test('coverage should count function executions', t => {
   t.plan(4);
-  runFixture('function-executions').then(({locations}) => {
+  runFixture('function-executions').then(locations => {
     const functionLocations = locations.filter(isFunction);
     t.equal(functionLocations.length, 3);
     t.equal(functionLocations[0].count, 0);
@@ -33,7 +33,7 @@ test('coverage should count function executions', t => {
 
 test('coverage should count fat arrow function declarations', t => {
   t.plan(3);
-  runFixture('function-arrow-fat-declarations').then(({locations}) => {
+  runFixture('function-arrow-fat-declarations').then(locations => {
     const statementLocations = locations.filter(isStatement);
     t.equal(statementLocations.length, 2);
     t.equal(statementLocations[0].count, 1);
@@ -43,7 +43,7 @@ test('coverage should count fat arrow function declarations', t => {
 
 test('coverage should count fat arrow function executions', t => {
   t.plan(3);
-  runFixture('function-arrow-fat-executions').then(({locations}) => {
+  runFixture('function-arrow-fat-executions').then(locations => {
     const functionLocations = locations.filter(isFunction);
     t.equal(functionLocations.length, 2);
     t.equal(functionLocations[0].count, 0);
