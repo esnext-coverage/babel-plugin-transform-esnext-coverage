@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/esnext-coverage/babel-plugin-transform-esnext-coverage",
   "dependencies": {
-    "babel-template": "^6.16.0"
+    "babel-template": "^6.16.0",
+    "esnext-coverage-analytics": "^0.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -43,7 +44,7 @@
   "esnextcoverage": {
     "only": "src/**.js",
     "reporters": [
-      {"formatter": "html", "outFile": "reports/coverage/coverage.html"}
+      {"outFile": "reports/coverage/coverage.json"}
     ],
     "thresholds": {
       "global": {

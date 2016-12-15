@@ -8,7 +8,7 @@ import {isExpression, isStatement, isBranch} from './helpers/tag-assert';
 
 test('coverage should count for-statement statements', t => {
   t.plan(2);
-  runFixture('for-statements').then(({locations}) => {
+  runFixture('for-statements').then(locations => {
     const statementLocations = locations.filter(isStatement);
     const executedStatementLocations = statementLocations
       .filter(el => el.count === 1)
@@ -23,7 +23,7 @@ test('coverage should count for-statement statements', t => {
 
 test('coverage should count for-statement test expressions', t => {
   t.plan(3);
-  runFixture('for-statements').then(({locations}) => {
+  runFixture('for-statements').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations
       .filter(el => el.count === 1);
@@ -41,7 +41,7 @@ test('coverage should count for-statement test expressions', t => {
 
 test('coverage should count conditionless for-statements', t => {
   t.plan(2);
-  runFixture('for-statements-no-condition').then(({locations}) => {
+  runFixture('for-statements-no-condition').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const statementLocations = locations.filter(isStatement);
 
@@ -54,7 +54,7 @@ test('coverage should count conditionless for-statements', t => {
 
 test.skip('coverage should count for-statement branches', t => {
   t.plan(2);
-  runFixture('for-statements').then(({locations}) => {
+  runFixture('for-statements').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedBranchLocations = branchLocations
       .filter(el => el.count === 1)

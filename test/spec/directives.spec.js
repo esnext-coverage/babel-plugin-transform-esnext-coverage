@@ -8,7 +8,7 @@ import {isDirective} from './helpers/tag-assert';
 
 test('coverage should count directives', t => {
   t.plan(3);
-  runFixture('directives').then(({locations}) => {
+  runFixture('directives').then(locations => {
     const directiveLocations = locations.filter(isDirective);
     const executedOnceDirectiveLocations = directiveLocations
       .filter(l => l.count === 1);

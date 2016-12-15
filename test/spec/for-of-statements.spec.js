@@ -8,7 +8,7 @@ import {isExpression, isStatement, isBranch} from './helpers/tag-assert';
 
 test('coverage should count for-of statements', t => {
   t.plan(2);
-  runFixture('for-of-statements').then(({locations}) => {
+  runFixture('for-of-statements').then(locations => {
     const statementLocations = locations.filter(isStatement);
     const executedOnceStatementLocations = statementLocations
       .filter(el => el.count === 1);
@@ -22,7 +22,7 @@ test('coverage should count for-of statements', t => {
 
 test('coverage should count for-of statement test expressions', t => {
   t.plan(2);
-  runFixture('for-of-statements').then(({locations}) => {
+  runFixture('for-of-statements').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations
       .filter(el => el.count === 1);
@@ -36,7 +36,7 @@ test('coverage should count for-of statement test expressions', t => {
 
 test.skip('coverage should count for-of statement branches', t => {
   t.plan(2);
-  runFixture('for-of-statements').then(({locations}) => {
+  runFixture('for-of-statements').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedOnceBranchLocations = branchLocations
       .filter(el => el.count === 1);

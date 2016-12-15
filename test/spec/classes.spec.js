@@ -13,7 +13,7 @@ import {
 
 test('coverage should count class declarations', t => {
   t.plan(3);
-  runFixture('classes').then(({locations}) => {
+  runFixture('classes').then(locations => {
     const statementLocations = locations.filter(isStatement);
     const executedOnceStatementLocations = statementLocations
       .filter(l => l.count === 1);
@@ -35,7 +35,7 @@ test('coverage should count class declarations', t => {
 
 test('coverage should count expressions in classes', t => {
   t.plan(3);
-  runFixture('classes').then(({locations}) => {
+  runFixture('classes').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations
       .filter(location => location.count === 1);
@@ -57,7 +57,7 @@ test('coverage should count expressions in classes', t => {
 
 test('coverage should count class constructors', t => {
   t.plan(1);
-  runFixture('classes').then(({locations}) => {
+  runFixture('classes').then(locations => {
     const constructorLocations = locations.filter(isConstructor);
     // There is only one constructor:
     t.equal(constructorLocations.length, 1);
@@ -66,7 +66,7 @@ test('coverage should count class constructors', t => {
 
 test('coverage should count class methods and track their executions', t => {
   t.plan(3);
-  runFixture('classes').then(({locations}) => {
+  runFixture('classes').then(locations => {
     const functionLocations = locations.filter(isFunction);
     const executedOnceFunctionLocations = functionLocations
       .filter(l => l.count === 1);

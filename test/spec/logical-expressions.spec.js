@@ -8,7 +8,7 @@ import {isExpression, isBranch} from './helpers/tag-assert';
 
 test('coverage should count logical expressions', t => {
   t.plan(3);
-  runFixture('logical-expressions').then(({locations}) => {
+  runFixture('logical-expressions').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedOnceExpressionLocations = expressionLocations
       .filter(el => el.count === 1);
@@ -26,7 +26,7 @@ test('coverage should count logical expressions', t => {
 
 test('coverage should count logical branches', t => {
   t.plan(3);
-  runFixture('logical-expressions').then(({locations}) => {
+  runFixture('logical-expressions').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedOnceBranchLocations = branchLocations
       .filter(el => el.count === 1);

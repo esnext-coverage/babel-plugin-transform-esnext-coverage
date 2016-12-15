@@ -8,7 +8,7 @@ import {isStatement} from './helpers/tag-assert';
 
 test('coverage should count break statements', t => {
   t.plan(2);
-  runFixture('break-statements').then(({locations}) => {
+  runFixture('break-statements').then(locations => {
     const statementLocations = locations.filter(isStatement);
     const executedOnceStatementLocations = statementLocations
       .filter(el => el.count === 1);

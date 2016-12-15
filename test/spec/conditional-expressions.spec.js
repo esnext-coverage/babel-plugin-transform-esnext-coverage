@@ -8,7 +8,7 @@ import {isExpression, isStatement, isBranch} from './helpers/tag-assert';
 
 test('coverage should count conditional expressions', t => {
   t.plan(3);
-  runFixture('conditional-expressions').then(({locations}) => {
+  runFixture('conditional-expressions').then(locations => {
     const expressionLocations = locations.filter(isExpression);
     const executedNeverExpressionLocations = expressionLocations
       .filter(l => l.count === 0);
@@ -23,7 +23,7 @@ test('coverage should count conditional expressions', t => {
 
 test('coverage should count conditional expressions as branches', t => {
   t.plan(3);
-  runFixture('conditional-expressions').then(({locations}) => {
+  runFixture('conditional-expressions').then(locations => {
     const branchLocations = locations.filter(isBranch);
     const executedNeverBranchLocations = branchLocations
       .filter(l => l.count === 0);
@@ -38,7 +38,7 @@ test('coverage should count conditional expressions as branches', t => {
 
 test('coverage should instrument conditional expression statements', t => {
   t.plan(2);
-  runFixture('conditional-expressions').then(({locations}) => {
+  runFixture('conditional-expressions').then(locations => {
     const statementLocations = locations.filter(isStatement);
     const executedOnceExpressionLocations = statementLocations
       .filter(l => l.count === 1);

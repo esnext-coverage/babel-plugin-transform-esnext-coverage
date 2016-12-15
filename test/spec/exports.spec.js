@@ -12,7 +12,7 @@ import {
 
 test('coverage should count exports', t => {
   t.plan(2);
-  runFixture('export-statements').then(({locations}) => {
+  runFixture('export-statements').then(locations => {
     const exportLocations = locations.filter(isExport);
     const executedOnceExportLocations = exportLocations
       .filter(el => el.count === 1);
@@ -24,7 +24,7 @@ test('coverage should count exports', t => {
 
 test('coverage should count exports as statements', t => {
   t.plan(2);
-  runFixture('export-statements').then(({locations}) => {
+  runFixture('export-statements').then(locations => {
     const exportStatements = locations.filter(isStatement);
     const executedOnceStatements = exportStatements
       .filter(el => el.count === 1);
@@ -36,7 +36,7 @@ test('coverage should count exports as statements', t => {
 
 test('coverage should count export function declarations', t => {
   t.plan(2);
-  runFixture('export-statements').then(({locations}) => {
+  runFixture('export-statements').then(locations => {
     const functionLocations = locations.filter(isFunction);
     const executedNeverFunctionLocations = functionLocations
       .filter(el => el.count === 0);
@@ -50,7 +50,7 @@ test('coverage should count export function declarations', t => {
 
 test('coverage should count export extensions as "export"', t => {
   t.plan(2);
-  runFixture('export-extensions-statements').then(({locations}) => {
+  runFixture('export-extensions-statements').then(locations => {
     const exportLocations = locations.filter(isExport);
 
     // There is only one location per export statement, because
@@ -63,7 +63,7 @@ test('coverage should count export extensions as "export"', t => {
 
 test('coverage should count export extensions as "statement"', t => {
   t.plan(2);
-  runFixture('export-extensions-statements').then(({locations}) => {
+  runFixture('export-extensions-statements').then(locations => {
     const statementLocations = locations.filter(isStatement);
 
     // There is only one location per export statement, because
