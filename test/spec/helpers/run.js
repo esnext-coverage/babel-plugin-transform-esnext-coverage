@@ -8,14 +8,13 @@ export default function runFixture(fixtureName) {
   const fixturePath = path.resolve(__dirname, `../../fixture/${fixtureName}.fixture.js`);
   return transform(fixturePath)
     .then(({code}) => {
-      // console.log(code);
       const sandbox = {
         require,
         global: {},
         exports: {}
       };
       runInNewContext(code, sandbox);
-      const fileCoverage = sandbox.global[namespace].files[fixturePath].coverage;
+      const fileCoverage = sandbox.global[namespace][fixturePath];
       return codec.decodeAll(fileCoverage);
     })
     .catch(error => console.error(error)); // eslint-disable-line no-console
