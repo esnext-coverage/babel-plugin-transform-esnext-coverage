@@ -1,5 +1,3 @@
-/* eslint-disable no-undef, no-unused-vars */
-
 const VARIABLE = (function (context) {
   const locations = JSON.parse(LOCATIONS);
   context[NAMESPACE] = context[NAMESPACE] || {};

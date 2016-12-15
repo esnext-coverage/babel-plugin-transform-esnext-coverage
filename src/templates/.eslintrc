@@ -1,0 +1,13 @@
+{
+  "globals": {
+    "NAMESPACE": true,
+    "FILEPATH": true,
+    "LOCATIONS": true,
+    "window": true,
+    "global": true
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "no-var": "off"
+  }
+}
