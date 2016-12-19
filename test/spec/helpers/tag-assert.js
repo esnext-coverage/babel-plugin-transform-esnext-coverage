@@ -6,10 +6,6 @@ export function isFunction({tags}) {
   return tags.some(tag => tag === 'function');
 }
 
-export function isConstructor({tags}) {
-  return tags.some(tag => tag === 'constructor');
-}
-
 export function isBranch({tags}) {
   return tags.some(tag => tag === 'branch');
 }

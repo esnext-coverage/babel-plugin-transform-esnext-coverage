@@ -5,7 +5,7 @@ class A {
   p = // one statement (executed twice)
     1; // one expression (executed twice)
   constructor() { // one statement
-    // one constructor function (executed twice)
+    // one function (executed twice)
   }
   foo() { // one statement
     // one method function
