@@ -4,7 +4,7 @@ import {types} from 'babel-core';
 import template from 'babel-template';
 import {getCoverageMeta} from './meta';
 
-const preludeFilePath = path.resolve(__dirname, 'templates/prelude.js');
+const preludeFilePath = path.resolve(__dirname, 'templates/prelude-template.js');
 const render = template(readFileSync(preludeFilePath, 'utf8'));
 
 export const defaultNamespace = '__coverage__';
