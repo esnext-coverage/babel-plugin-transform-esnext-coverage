@@ -11,7 +11,7 @@ export const defaultNamespace = '__coverage__';
 
 export default function prelude(state) {
   const {variable, locations} = getCoverageMeta(state);
-  const name = state.file.opts.filenameRelative;
+  const name = state.file.opts.filenameRelative.replace(`${process.cwd()}${path.sep}`, '');
   const namespace = state.opts && state.opts.global || defaultNamespace;
   return render({
     VARIABLE: variable,
