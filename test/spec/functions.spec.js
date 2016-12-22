@@ -1,6 +1,6 @@
 import test from 'tape';
 import runFixture from './helpers/run';
-import {isFunction, isStatement} from './helpers/tag-assert';
+import {isFunction, isStatement, isBranch} from './helpers/tag-assert';
 
 //
 // Normal functions
@@ -27,6 +27,18 @@ test('coverage should count function executions', t => {
   });
 });
 
+test('coverage should count default parameters as branches', t => {
+  t.plan(3);
+  runFixture('function-default-parameters').then(locations => {
+    const branchLocations = locations.filter(isBranch);
+    const executedOnceBranchLocations = branchLocations.filter(el => el.count === 1);
+    const executedNeverBranchLocations = branchLocations.filter(el => el.count === 0);
+    t.equal(branchLocations.length, 2);
+    t.equal(executedOnceBranchLocations.length, 1);
+    t.equal(executedNeverBranchLocations.length, 1);
+  });
+});
+
 //
 // Fat arrow functions
 // --------------------
@@ -48,5 +60,17 @@ test('coverage should count fat arrow function executions', t => {
     t.equal(functionLocations.length, 2);
     t.equal(functionLocations[0].count, 0);
     t.equal(functionLocations[1].count, 3);
+  });
+});
+
+test('coverage should count fat arrow function\'s default parameters as branches', t => {
+  t.plan(3);
+  runFixture('function-arrow-fat-default-parameters').then(locations => {
+    const branchLocations = locations.filter(isBranch);
+    const executedOnceBranchLocations = branchLocations.filter(el => el.count === 1);
+    const executedNeverBranchLocations = branchLocations.filter(el => el.count === 0);
+    t.equal(branchLocations.length, 2);
+    t.equal(executedOnceBranchLocations.length, 1);
+    t.equal(executedNeverBranchLocations.length, 1);
   });
 });

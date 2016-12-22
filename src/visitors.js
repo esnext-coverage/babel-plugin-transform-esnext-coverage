@@ -109,6 +109,12 @@ export default safeguardVisitors({
     instrumentExpression(path, state);
   },
 
+  // Source: function foo(a = 42) {}
+  // Instrumented: function foo(a = increment(0, 42)) {}
+  AssignmentPattern(path, state) {
+    instrumentExpression(path.get('right'), state, ['branch']);
+  },
+
   // Source: if (true) {}
   // Instrumented: ++count; if (++count, true) { ++count; } else { ++count; }
   IfStatement(path, state) {
