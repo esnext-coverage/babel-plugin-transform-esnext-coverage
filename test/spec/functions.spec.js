@@ -16,6 +16,25 @@ test('coverage should count function declarations', t => {
   });
 });
 
+test('coverage should count functions declared after return statment', t => {
+  t.plan(3);
+  runFixture('function-after-return').then(locations => {
+    const functionLocations = locations.filter(isFunction);
+    const statementLocations = locations.filter(isStatement);
+    const declaredOnceFunctionLocations = functionLocations
+      .filter(el => el.count === 1);
+    const executedOnceStatementLocations = statementLocations
+      .filter(el => el.count === 1);
+
+    // There are two functions:
+    t.equal(functionLocations.length, 2);
+    // Both functions have been declared once:
+    t.equal(declaredOnceFunctionLocations.length, 2);
+    // All statements have been executed once:
+    t.equal(executedOnceStatementLocations.length, 4);
+  });
+});
+
 test('coverage should count function executions', t => {
   t.plan(4);
   runFixture('function-executions').then(locations => {

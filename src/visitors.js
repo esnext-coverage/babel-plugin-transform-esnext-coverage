@@ -173,13 +173,18 @@ export default safeguardVisitors({
     instrumentStatement(path, state);
   },
 
-  Function(path, state) {
-    if (path.node.kind === 'constructor') {
-      instrumentBlock('body', path.get('body'), state, ['function', 'constructor']);
-    } else {
-      instrumentBlock('body', path.get('body'), state, ['function']);
-    }
-    instrumentStatement(path, state);
+  FunctionExpression(path, state) {
+    instrumentBlock('body', path.get('body'), state, ['function']);
+  },
+
+  FunctionDeclaration(path, state) {
+    const loc = path.node.loc;
+    const marker = createMarker(state, {loc, tags: ['statement']});
+    path.findParent(parent => parent.isBlock())
+      .unshiftContainer('body', markAsInstrumented(
+        t.expressionStatement(marker)
+      ));
+    instrumentBlock('body', path.get('body'), state, ['function']);
   },
 
   // Source: x => {}
@@ -214,11 +219,18 @@ export default safeguardVisitors({
     instrumentObjectProperty(path, state);
   },
 
+  ClassProperty(path, state) {
+    instrumentClassProperty(path, state);
+  },
+
+  ClassMethod(path, state) {
+    instrumentBlock('body', path.get('body'), state, ['function']);
+  },
+
   ClassBody(path, state) {
     const parent = path.parentPath;
     const body = path.get('body');
     const methods = body.filter(node => node.isMethod());
-    const props = body.filter(node => !node.isMethod());
     const methodMarkers = methods.map(method => {
       const tags = ['statement', 'method'];
       const loc = method.node.loc;
@@ -237,10 +249,6 @@ export default safeguardVisitors({
         t.sequenceExpression([...methodMarkers, parent.node])
       ));
     }
-
-    props.forEach(prop => {
-      instrumentClassProperty(prop, state);
-    });
   }
 
 });

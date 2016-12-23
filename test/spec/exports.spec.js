@@ -25,7 +25,7 @@ test('coverage should count exports', t => {
 test('coverage should count exports as statements', t => {
   t.plan(2);
   runFixture('export-statements').then(locations => {
-    const exportStatements = locations.filter(isStatement);
+    const exportStatements = locations.filter(isExport).filter(isStatement);
     const executedOnceStatements = exportStatements
       .filter(el => el.count === 1);
 

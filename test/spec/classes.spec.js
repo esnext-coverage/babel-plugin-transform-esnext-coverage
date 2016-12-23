@@ -1,7 +1,6 @@
 import test from 'tape';
 import runFixture from './helpers/run';
 import {
-  isConstructor,
   isExpression,
   isStatement,
   isFunction
@@ -54,15 +53,6 @@ test('coverage should count expressions in classes', t => {
 //
 // Class methods
 // --------------------
-
-test('coverage should count class constructors', t => {
-  t.plan(1);
-  runFixture('classes').then(locations => {
-    const constructorLocations = locations.filter(isConstructor);
-    // There is only one constructor:
-    t.equal(constructorLocations.length, 1);
-  });
-});
 
 test('coverage should count class methods and track their executions', t => {
   t.plan(3);
