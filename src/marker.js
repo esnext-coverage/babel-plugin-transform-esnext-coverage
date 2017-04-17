@@ -37,6 +37,6 @@ export function createMarker(state, {loc, tags}, node) {
     args.push(node);
   }
   const marker = types.callExpression(variable, args);
-  locations.push(codec.encode({loc, tags, count: 0}));
+  locations.push(codec.encodeLocation({loc, tags, count: 0}));
   return markAsInstrumented(marker);
 }

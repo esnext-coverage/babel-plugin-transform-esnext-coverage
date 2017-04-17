@@ -2,6 +2,7 @@
   "globals": {
     "NAMESPACE": true,
     "FILEPATH": true,
+    "TOKENS": true,
     "LOCATIONS": true,
     "window": true,
     "global": true

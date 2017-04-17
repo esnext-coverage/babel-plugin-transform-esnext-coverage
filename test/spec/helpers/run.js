@@ -16,7 +16,7 @@ export default function runFixture(fixtureName) {
       };
       runInNewContext(code, sandbox);
       const fileCoverage = sandbox.global[namespace][relativeFixturePath];
-      return codec.decodeAll(fileCoverage);
+      return codec.decode(fileCoverage).locations;
     })
     .catch(error => console.error(error)); // eslint-disable-line no-console
 }
