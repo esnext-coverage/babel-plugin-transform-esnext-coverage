@@ -26,24 +26,27 @@
   },
   "homepage": "https://github.com/esnext-coverage/babel-plugin-transform-esnext-coverage",
   "dependencies": {
-    "babel-template": "^6.16.0",
+    "babel-template": "^6.24.1",
     "esnext-coverage-analytics": "^0.0.6"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.21.0",
-    "babel-eslint": "^7.1.1",
-    "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-preset-es2015": "^6.18.0",
-    "eslint": "^3.12.2",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-parameters": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^3.19.0",
     "eslint-config-meetic": "^4.0.0",
-    "esnext-coverage": "^0.0.7",
+    "esnext-coverage": "^0.0.8",
     "tape": "^4.6.3"
   },
   "esnextcoverage": {
     "only": "src/**.js",
     "reporters": [
-      {"outFile": "reports/coverage/coverage.json"}
+      {
+        "outFile": "reports/coverage/coverage.json"
+      }
     ],
     "thresholds": {
       "global": {
